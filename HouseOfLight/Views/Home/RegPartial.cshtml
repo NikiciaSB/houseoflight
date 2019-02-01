@@ -1,0 +1,37 @@
+@model Reg
+<br><br>
+<h1 style="color:white" >Register</h1>
+<form asp-action="Register" asp-controller="Home" method="post">
+    <div class="form-group">
+        <span style="color:red" asp-validation-for="FirstName"></span>
+        <label style="color:white" asp-for="FirstName" for="exampleInputEmail1">First Name:</label>
+        <input asp-for="FirstName" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter First Name">
+    </div>
+    <div class="form-group">
+        <span style="color:red" asp-validation-for="LastName"></span>
+        <label style="color:white" asp-for="LastName" for="exampleInputPassword1">Last Name:</label>
+        <input asp-for="LastName" type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter Last Name">
+    </div>
+    <div class="form-group">
+        <span style="color:red" asp-validation-for="Username"></span>
+        <label style="color:white" asp-for="Username" for="exampleInputPassword1">Username:</label>
+        <input asp-for="Username" type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter Username">
+    </div>
+    <div class="form-group">
+        <span style="color:red" asp-validation-for="Email"></span>
+        <label style="color:white" asp-for="Email" for="exampleInputEmail1">Email address:</label>
+        <input asp-for="Email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+        <span style="color:red" asp-validation-for="Password"></span>
+        <label style="color:white" asp-for="Password" for="exampleInputPassword1">Password:</label>
+        <input asp-for="Password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password">
+    </div>
+    <div class="form-group">
+        <span style="color:red" asp-validation-for="Confirm"></span>
+        <label style="color:white" asp-for="Confirm" for="exampleInputPassword1">Confirm Password:</label>
+        <input asp-for="Confirm" type="password" class="form-control" id="exampleInputPassword1" placeholder="Confirm Password">
+    </div>
+    <button type="submit" class="btn btn-dark">Sign up now!</button>
+</form>

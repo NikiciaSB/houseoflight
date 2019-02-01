@@ -1,0 +1,133 @@
+﻿@model Message
+<nav class="navbar justify-content-end navbar-expand-lg navbar-dark bg-dark ">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="true" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <a class="navbar-brand" href="/">HOL</a>
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item">
+            <a class="nav-link" href="/main">Main</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/community">Community</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/secret">Secret</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/team">The Team</a>
+        </li>
+        @if(ViewBag.Id == null)
+        {
+            <li class="nav-item">
+            <a class="nav-link" href="/reg">Register/Login</a>
+            </li>
+        }
+        @if(ViewBag.Id !=null)
+        {
+            <li class="nav-item">
+                <a class="nav-link" href="/account">My Account</a>
+            </li>
+        }
+        @if(ViewBag.Id != null)
+        {
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Logout</a>
+            </li>
+        }
+    </ul>
+</nav>
+<div style="background-color:rgba(110, 14, 16, 0.5); padding:20px;">
+    <div class="row">
+        <div class="col-sm">
+            <h2 style="color:white;" >HOL Community</h2>
+            <br>
+            <p style="color: #D3D3D3;">This is an open space for lovers of the "House of Light" game to express their love, disdain, appreciation and helpful <b><i>(or most likely unhelpful)</i></b> criticisms. Come and share in our twisted community! </p>
+        </div>
+    </div>
+    <br>
+    <hr>
+    <div class="row">
+        <div class="col-lg-12">
+            @if(ViewBag.Id != null)
+            {
+                <form asp-action="Message" asp-controller="Main" method="post">
+                    <input type="hidden" value=@ViewBag.Id asp-for="UserId">
+                    <div class="form-group">
+                        <span style="color:white" asp-validation-for="Title"></span>
+                        <label style="color:white;"asp-for="Title" for="exampleInputEmail1">Message Title</label>
+                        <input asp-for="Title" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Title">
+                    </div>
+                    <div class="form-group">
+                        <span style="color:white" asp-validation-for="Messages"></span>
+                        <label style="color:white;"asp-for="Messages" for="exampleFormControlTextarea1">Post Message</label>
+                        <textarea asp-for="Messages"class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-dark">Post Message</button>
+                </form>
+            }
+        </div>
+    </div>
+    <br><br>
+    <div class="row">
+        <div class="col-lg-12">
+            <ul>
+                @foreach(var msg in ViewBag.Message)
+                {
+                    <li><h5 style="color:white">@msg.Title</h5><p style="color:white" >@msg.Messages</p>
+                    <p style="color:white" >@msg.Creator.Username ---- @msg.CreatedAt</p></li>
+                    @if(msg.Creator.UserId == ViewBag.Id)
+                    {
+                        <form asp-action="DELETE" asp-controller="Main" method="post">
+                            <input type="hidden" value=@ViewBag.Id asp-for="UserId">
+                            <input type="hidden" value=@msg.MsgId asp-for="MsgId">
+                            <button type="submit" class="btn btn-danger btn-sm">Delete Message</button>
+                        </form>
+                    }
+                @if(msg.Messages != null)
+                        {
+                            @if(msg.Comments !=null)
+                            {
+                                @foreach(var comm in msg.Comments)
+                                {
+                                    var id = @comm.ComntId;
+                                <ul>
+                                    <li><p  style="color:lightgrey" >@comm.Comments</p> <p  style="color:lightgrey" >@comm.Creator.Username---@msg.CreatedAt</p></li>
+                                </ul> 
+                                    @if(comm.Creator.UserId == ViewBag.Id)
+                                    {
+                                    <form asp-action="DeleteComnt" asp-controller="Main" method="post">
+                                        <input type="hidden" value=@ViewBag.Id asp-for="UserId">
+                                        <input type="hidden" value=@id name="ComntId">
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete Comment</button>
+                                    </form>
+                                    <br>
+                                    }
+                                }
+                            }
+                            @if(ViewBag.Id != null)
+                            {
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <form asp-action="Comment" asp-controller="Main" method="post">
+                                            <input type="hidden" value=@ViewBag.Id asp-for="UserId">
+                                            <input type="hidden" value=@msg.MsgId asp-for="MsgId">
+                                            <div class="form-group">
+                                                <span style="color:red" asp-validation-for="Comments"></span>
+                                                <label  style="color:lightgrey"  asp-for="Comments" for="exampleFormControlTextarea1">Post Comment</label>
+                                                <textarea asp-for="Comments"class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                            </div>
+                                            <button type="submit" class="btn btn-secondary">Post Comment</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <hr>
+                                <br>
+                            }
+                        }
+                }
+            <hr>
+        </div>
+    </div>
+</div>

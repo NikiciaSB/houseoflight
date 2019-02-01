@@ -1,0 +1,97 @@
+@model Reg
+<nav class="navbar justify-content-end navbar-expand-lg navbar-dark bg-dark ">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <a class="navbar-brand" href="/">HOL</a>
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item">
+            <a class="nav-link" href="/main">Main</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/community">Community</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/secret">Secret</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/team">The Team</a>
+        </li>
+        @if(ViewBag.Id !=null)
+        {
+            <li class="nav-item">
+                <a class="nav-link" href="/account">My Account</a>
+            </li>
+        }
+        @if(ViewBag.Id != null)
+        {
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Logout</a>
+            </li>
+        }
+    </ul>
+</nav>
+<div style="background-color:rgba(110, 14, 16, 0.5); padding:20px;">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="profilepic">
+                <img src=@ViewBag.User.ProfilePic alt="goth girl" width="200px" >
+            </div>
+            <br>
+            @if(@ViewBag.User.ProfilePic == null)
+            {
+                <div id="editpic">
+                    <form asp-action="Pic" asp-controller="Main" method="post">
+                        <div class="form-group">
+                            <label style="color:white;">Add Profile Pic</label><br>
+                            <input  name="ProfilePic" type="text" class="form-control " placeholder="Add Profile Pic">
+                            <small id="emailHelp" class="form-text text-muted">Only a link to a picture can be entered into this field.</small>
+
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                    <br>
+                </div> 
+            }
+            <h4 style="color:white;" >Username: @ViewBag.User.Username</h4>
+            <h4 style="color:white;" >Status: Lvl 6</h4>
+            <a href="/edit/@ViewBag.User.UserId"><button type="button" class="btn btn-secondary btn-sm">Edit Account</button></a>
+        </div>
+        <div class="col-md-8">
+                <h2 style="color:white;" >@ViewBag.User.Username's Activity</h2>
+        @if(ViewBag.User.Messages != null)
+        {
+            <h4 style="color: #D3D3D3;">Messages</h4>
+                @foreach(var msg in ViewBag.User.Messages)
+                {
+                <br>
+                <h5 style="color: #D3D3D3;" >@msg.Title</h5>
+                <p style="color: #D3D3D3;">@msg.Messages</p>
+                <hr>
+                }
+        }
+        else
+        {
+            <br>
+            <ul>
+                <li>
+                    <h4 style="color:white;">Welcome @ViewBag.User.Username add some messages to the Community to fill in this space</h4>
+                </li>
+            </ul>
+        }
+        
+        @if(ViewBag.User.CreatedComments != null)
+        {
+            <h4 style="color: #D3D3D3;">Comments</h4>
+            @foreach(var cmmt in ViewBag.User.CreatedComments)
+            {
+                <br>
+                <p style="color: #D3D3D3;">@cmmt.Comments</p>
+                <p style="color: #D3D3D3;">@cmmt.CreatedAt</p>
+                <hr>
+            }
+        }
+        </div>
+    </div>
+</div>

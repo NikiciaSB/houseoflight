@@ -1,0 +1,71 @@
+<nav class="navbar justify-content-end navbar-expand-lg navbar-dark bg-dark ">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <a class="navbar-brand" href="/">HOL</a>
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item">
+            <a class="nav-link" href="/main">Main</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/community">Community</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/secret">Secret</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/team">The Team</a>
+        </li>
+        @if(ViewBag.Id == null)
+        {
+            <li class="nav-item">
+            <a class="nav-link" href="/reg">Register/Login</a>
+            </li>
+        }
+        @if(ViewBag.Id !=null)
+        {
+            <li class="nav-item">
+                <a class="nav-link" href="/account">My Account</a>
+            </li>
+        }
+        @if(ViewBag.Id != null)
+        {
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Logout</a>
+            </li>
+        }
+    </ul>
+</nav>
+<div style="background-color:rgba(110, 14, 16, 0.5); padding:20px;">
+    <div class="row">
+        <div class="col-sm">
+            <h1 style="color:white;">Meet The Team</h1>
+            <br><br>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <h2 style="color:white;">Game Developers</h2>
+            <img id="atj" src="~/images/andy_tj_image1.jpeg" alt="Andie & TJ" width="300px"height="400px">
+            <br>
+            <h4 style="color: #D3D3D3;">Andy</h4>
+            <p style="color: #D3D3D3;" >Cat at decapitated guns. Edginess anxiety tension, claw at deteriorated in, creep a tear. In the derange. Halloween slice. screams exorcism oozed smashed. Buried non guts claw and creature hair-raising decapitated at est. Mental hospital sliced drowning. Flames at crazy slicing with murderer gore. Suicide Slash demon at convulsing darkness a evil pain burn. killer mental psychotic.Sliced. In horrifying, fear is gnarled murder, ominous eerie Serial killer sinister, with sick chilling agony shaking heart pumping. Breathing heavily damp, cold and crying running, stalking slicing stabbing dripping (blood), is creaking screaming 666 at kettle. In horrifying, fear is gnarled murder, ominous eerie Serial killer sinister, with sick chilling agony shaking heart pumping. </p>
+        </div>
+    </div>
+        <div class="row">
+        <div class="col-sm">
+            <h4 style="color: #D3D3D3;"> TJ</h4>
+            <p style="color: #D3D3D3;" >Cat at decapitated guns. Edginess anxiety tension, claw at deteriorated in, creep a tear. In the derange. Halloween slice. screams exorcism oozed smashed. Buried non guts claw and creature hair-raising decapitated at est. Mental hospital sliced drowning. Flames at crazy slicing with murderer gore. Suicide Slash demon at convulsing darkness a evil pain burn. killer mental psychotic.Sliced. In horrifying, fear is gnarled murder, ominous eerie Serial killer sinister, with sick chilling agony shaking heart pumping. Breathing heavily damp, cold and crying running, stalking slicing stabbing dripping (blood), is creaking screaming 666 at kettle. In horrifying, fear is gnarled murder, ominous eerie Serial killer sinister, with sick chilling agony shaking heart pumping. </p>
+        </div>
+    </div>
+    <br><br>
+    <div class="row">
+        <div class="col-sm">
+            <h2 style="color:white;">Graphic Designer & Web Developer</h2>
+            <img src="~/images/nikki.jpeg" alt="Nikki" width="300px">
+            <h4 style="color: #D3D3D3;">Nikki</h4>
+            <p style="color: #D3D3D3;">Cat at decapitated guns. Edginess anxiety tension, claw at deteriorated in, creep a tear. In the derange. Halloween slice. screams exorcism oozed smashed. Buried non guts claw and creature hair-raising decapitated at est. Mental hospital sliced drowning. Flames at crazy slicing with murderer gore. Suicide Slash demon at convulsing darkness a evil pain burn. killer mental psychotic.Sliced. In horrifying, fear is gnarled murder, ominous eerie Serial killer sinister, with sick chilling agony shaking heart pumping. Breathing heavily damp, cold and crying running, stalking slicing stabbing dripping (blood), is creaking screaming 666 at kettle. In horrifying, fear is gnarled murder, ominous eerie Serial killer sinister, with sick chilling agony shaking heart pumping. </p>
+        </div>
+    </div>
+</div>
